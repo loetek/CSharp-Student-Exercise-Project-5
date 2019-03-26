@@ -57,7 +57,7 @@ namespace StudentExercisesAPI.Controllers
                     }
 
                     reader.Close();
-                    return instructors;
+                    return instructors.ToList();
                 }
             }
         }
