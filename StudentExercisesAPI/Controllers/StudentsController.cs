@@ -33,7 +33,7 @@ namespace StudentExercisesAPI.Controllers
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT s.id, s.firstname, s.lastname,
-                                               s.slackhandle, s.cohortId, s.name as cohortname
+                                               s.slackhandle, s.cohortId, c.name As cohortname
                                           FROM Student s INNER JOIN Cohort c ON s.cohortid = c.id";
                     SqlDataReader reader = cmd.ExecuteReader();
 
