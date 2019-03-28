@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using StudentExercisesAPI.Models;
 
 namespace StudentExercisesAPI.Controllers
@@ -14,12 +15,18 @@ namespace StudentExercisesAPI.Controllers
     public class ExercisesController : ControllerBase
     {
 
+        private readonly IConfiguration configuration;
+
+        public ExercisesController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         public SqlConnection Connection
         {
             get
             {
-                string connectionSTring = "Server=localhost\\SQLExpress;Database=StudentExercisesDB;Integrated Security=true";
-                return new SqlConnection(connectionSTring);
+                return new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
             }
         }
 
